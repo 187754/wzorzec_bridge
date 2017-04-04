@@ -1,0 +1,1 @@
+# wzorzec_bridge
