@@ -1,14 +1,19 @@
 package reports;
 
-import parsers.ParserInterface;
-
 import java.util.ArrayList;
+
+import parsers.ParserInterface;
 
 public class Report {
 	private ParserInterface parser;
 	private String path;
+
 	private ArrayList<ReportData> data;
 
+	public Report(ParserInterface parser, String path) {
+		this.parser = parser;
+		this.path = path;
+	}
 
 	public ArrayList<ReportData> getData() {
 		return data;
@@ -18,12 +23,6 @@ public class Report {
 		this.data = data;
 	}
 
-
-	public Report(ParserInterface parser, String path) {
-		this.parser = parser;
-		this.path = path;
-	}
-
 	public void parseToFile() {
 		parser.parseFileToReportData(path);
 	}
@@ -31,8 +30,5 @@ public class Report {
 	public ArrayList<ReportData> parseFileToReportData() {
 		return parser.parseFileToReportData(path);
 	}
-
-
-
 
 }

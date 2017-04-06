@@ -1,5 +1,14 @@
 package factories;
 
+import reports.Report;
+import reports.StudentsReport;
+import reports.SubjectsReport;
+
 public interface ReportFactoryInterface {
-	// TODO INTERFEJS FABRYKI RAPORTÓW
+	public Report getReport(String path);
+
+	public StudentsReport getStudentReport(String path);
+
+	public SubjectsReport getSubjectsReport(String path);
+
 }

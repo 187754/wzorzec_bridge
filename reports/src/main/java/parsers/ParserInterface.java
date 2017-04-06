@@ -1,16 +1,14 @@
 package parsers;
 
-import reports.ReportData;
-
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
+import reports.ReportData;
+
 public interface ParserInterface {
 
-    public void parseToFile(ArrayList<ReportData> data, String path) throws FileNotFoundException;
+	public void parseToFile(ArrayList<ReportData> data, String path) throws FileNotFoundException;
 
-    public ArrayList<ReportData> parseFileToReportData(String path );
-
-
+	public ArrayList<ReportData> parseFileToReportData(String path);
 
 }

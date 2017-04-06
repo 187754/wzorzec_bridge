@@ -1,22 +1,24 @@
 package parsers;
 
-import reports.ReportData;
-
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import reports.ReportData;
+
 public class JsonParser implements ParserInterface {
 
+	public void parseToFile(ArrayList<ReportData> data, String path) throws FileNotFoundException {
 
-    @Override
-    public void parseToFile(ArrayList<ReportData> data, String path) throws FileNotFoundException {
-        PrintWriter zapis = new PrintWriter(path);
+		PrintWriter zapis = null;
+		try {
+			zapis = new PrintWriter(path);
+		} finally {
+			zapis.close();
+		}
+	}
 
-    }
-
-    @Override
-    public ArrayList<ReportData> parseFileToReportData(String path) {
-        return new ArrayList<ReportData>();
-    }
+	public ArrayList<ReportData> parseFileToReportData(String path) {
+		return new ArrayList<ReportData>();
+	}
 }

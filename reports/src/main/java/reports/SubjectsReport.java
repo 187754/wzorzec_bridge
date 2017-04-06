@@ -1,32 +1,28 @@
 package reports;
 
-import com.sun.org.apache.regexp.internal.RE;
-import parsers.ParserInterface;
-
 import java.util.ArrayList;
+
+import parsers.ParserInterface;
 
 /**
  * Created by Prusak on 2017-04-05.
  */
 public class SubjectsReport extends Report {
 
+	private ArrayList<ReportData> data;
 
-    private ArrayList<ReportData> data;
+	public enum SubjectParameterNames {
+		Przedmiot, Kierunek, Rok, Grupa, Studenci;
+	}
 
-    public enum SubjectParameterNames {
-        Przedmiot,Kierunek, Rok, Grupa, Studenci;
-    }
+	public SubjectsReport(ParserInterface parser, String path) {
+		super(parser, path);
 
-    public SubjectsReport(ParserInterface parser, String path) {
-        super(parser, path);
-
-        //przypisujemy nazwy parametrów dla tego typu raportów
-        data=super.getData();
-        for(int i=0;i<data.size();i++){
-            data.get(i).setParameterName(SubjectParameterNames.values()[i].toString());
-        }
-    }
-
-
+		// przypisujemy nazwy parametrów dla tego typu raportów
+		data = super.getData();
+		for (int i = 0; i < data.size(); i++) {
+			data.get(i).setParameterName(SubjectParameterNames.values()[i].toString());
+		}
+	}
 
 }
