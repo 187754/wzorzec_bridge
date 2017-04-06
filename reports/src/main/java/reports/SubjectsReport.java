@@ -10,13 +10,14 @@ import parsers.ParserInterface;
 public class SubjectsReport extends Report {
 
 	private ArrayList<ReportData> data;
+    static final String FILENAME="SubjectReport";
 
 	public enum SubjectParameterNames {
 		Przedmiot, Kierunek, Rok, Grupa, Studenci;
 	}
 
 	public SubjectsReport(ParserInterface parser, String path) {
-		super(parser, path);
+		super(parser, path+FILENAME);
 
 		// przypisujemy nazwy parametrów dla tego typu raportów
 		data = super.getData();

@@ -1,12 +1,14 @@
 package reports;
 
+import java.util.ArrayList;
+
 /**
  * Created by Prusak on 2017-04-04.
  */
 public class ReportData {
 
     private String ParameterName;
-    private String[] Value;
+    private ArrayList<String> Value;
 
     public String getParameterName() {
         return ParameterName;
@@ -16,11 +18,11 @@ public class ReportData {
         ParameterName = parameterName;
     }
 
-    public String[] getValue() {
+    public ArrayList<String> getValue() {
         return Value;
     }
 
-    public void setValue(String[] value) {
+    public void setValue(ArrayList<String> value) {
         Value = value;
     }
 

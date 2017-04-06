@@ -1,5 +1,6 @@
 package reports;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
 import parsers.ParserInterface;
@@ -24,7 +25,11 @@ public class Report {
 	}
 
 	public void parseToFile() {
-		parser.parseFileToReportData(path);
+		try {
+			parser.parseToFile(data,path);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public ArrayList<ReportData> parseFileToReportData() {
