@@ -20,7 +20,7 @@ public class App {
 		ReportData singleData2 = new ReportData();
 		ReportData singleData3 = new ReportData();
 		ReportData singleData4 = new ReportData();
-        StudentsReport report = new StudentsReport(new CsvParser(),"C:\\Users\\Prusak\\IdeaProjects\\wzorzec_bridge_projekt\\reports\\src\\main\\java\\reports");
+        StudentsReport report = new StudentsReport(new CsvParser(),"C:\\Users\\Prusak\\IdeaProjects\\wzorzec_bridge_projekt\\reports\\src\\main\\java\\reports\\");
 		ArrayList<String> nameValues = new ArrayList<>();
 		nameValues.add("Krzysztof");
 		nameValues.add("Krystian");
