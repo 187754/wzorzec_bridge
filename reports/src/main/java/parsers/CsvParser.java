@@ -1,6 +1,11 @@
 package parsers;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 
 import reports.ReportData;
@@ -13,14 +18,13 @@ public class CsvParser implements ParserInterface {
 	PrintWriter writer;
 	BufferedReader br = null;
 	FileReader fr = null;
-	final String SEPARATOR=";";
-	final String FILE_SUFFIX=".csv";
-
+	final String SEPARATOR = ";";
+	final String FILE_SUFFIX = ".csv";
 
 	public void parseToFile(ArrayList<ReportData> data, String path) throws FileNotFoundException {
 
 		String line = "";
-		path+=FILE_SUFFIX;
+		path += FILE_SUFFIX;
 
 		File f = new File(path);
 
@@ -55,49 +59,34 @@ public class CsvParser implements ParserInterface {
 			writer.close();
 		}
 
-
 	}
 
 	public ArrayList<ReportData> parseFileToReportData(String path) {
 		ArrayList<ReportData> data = new ArrayList<ReportData>();
-		path+=FILE_SUFFIX;
-
-
+		path += FILE_SUFFIX;
 
 		File f = new File(path);
 
 		try {
-
-
 			String line = "";
-
 			br = new BufferedReader(new FileReader(f));
-
 			while ((line = br.readLine()) != null) {
 				System.out.println(line);
 			}
-
 		} catch (IOException e) {
-
 			e.printStackTrace();
-
 		} finally {
-
 			try {
-
 				if (br != null)
 					br.close();
-
 				if (fr != null)
 					fr.close();
-
 			} catch (IOException ex) {
-
 				ex.printStackTrace();
-
 			}
 
-			return data;
 		}
+		return data;
+
 	}
 }

@@ -26,7 +26,7 @@ public class Report {
 
 	public void parseToFile() {
 		try {
-			parser.parseToFile(data,path);
+			parser.parseToFile(data, path);
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
