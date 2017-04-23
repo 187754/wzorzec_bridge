@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 import parsers.ParserInterface;
 
-public class Report {
+public abstract class Report {
 	private ParserInterface parser;
 	private String path;
 
