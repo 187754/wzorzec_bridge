@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import factories.ReportFactoryInterface;
 import factories.TechnicalUniversityReportFactory;
+import factories.UniversityReportFactory;
 
 /**
  * Hello world!
@@ -14,8 +15,8 @@ public class App {
 	public static void main(String[] args) {
 		// test csvParser
 		ReportFactoryInterface factory = new TechnicalUniversityReportFactory();
-		// ReportFactoryInterface factoryUni = new UniversityReportFactory();
-		// testApp(factoryUni);
+		ReportFactoryInterface factoryUni = new UniversityReportFactory();
+		testApp(factoryUni);
 		testApp(factory);
 
 	}
@@ -63,10 +64,8 @@ public class App {
 
 		report.setData(data);
 		report.parseToFile();
-		report.parseFileToReportData();
-		// Report report2 = factory.getStudentReport("C:\\reports2\\");
-		// report2.setData(report.parseFileToReportData());
-		// report2.parseToFile();
 
+		System.out.println(factory.getClass());
+		System.out.println(report.parseFileToReportData());
 	}
 }

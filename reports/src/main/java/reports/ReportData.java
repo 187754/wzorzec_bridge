@@ -7,25 +7,28 @@ import java.util.ArrayList;
  */
 public class ReportData {
 
-    private String ParameterName;
-    private ArrayList<String> Value;
+	private String ParameterName;
+	private ArrayList<String> Value;
 
-    public String getParameterName() {
-        return ParameterName;
-    }
+	public String getParameterName() {
+		return ParameterName;
+	}
 
-    public void setParameterName(String parameterName) {
-        ParameterName = parameterName;
-    }
+	public void setParameterName(String parameterName) {
+		ParameterName = parameterName;
+	}
 
-    public ArrayList<String> getValue() {
-        return Value;
-    }
+	public ArrayList<String> getValue() {
+		return Value;
+	}
 
-    public void setValue(ArrayList<String> value) {
-        Value = value;
-    }
+	@Override
+	public String toString() {
+		return ParameterName + Value;
+	}
 
-
+	public void setValue(ArrayList<String> value) {
+		Value = value;
+	}
 
 }

@@ -28,6 +28,7 @@ public class JsonParser implements ParserInterface {
 			obj = new JSONObject();
 			for (ReportData singleData : data) {
 				String s = singleData.getValue().get(i);
+				String p = singleData.getParameterName();
 				obj.put(singleData.getParameterName(), singleData.getValue().get(i));
 			}
 
@@ -61,7 +62,6 @@ public class JsonParser implements ParserInterface {
 		try {
 			Object obj = parser.parse(new FileReader(path));
 			JSONArray ja = (JSONArray) obj;
-			// System.out.println(ja);
 			JSONObject jo;
 			jo = (JSONObject) ja.get(0);
 			Object[] parameterNames;
@@ -81,13 +81,9 @@ public class JsonParser implements ParserInterface {
 					list.add((String) jo.get((String) parameterName));
 				}
 
-				System.out.println((String) parameterName);
-				System.out.println(list);
 				data.get(j).setValue(list);
 				j++;
 			}
-
-			System.out.println(data);
 
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

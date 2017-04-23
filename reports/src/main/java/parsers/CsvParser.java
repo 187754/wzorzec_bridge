@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
-import reports.Report;
 import reports.ReportData;
 
 /**
@@ -16,106 +15,99 @@ import reports.ReportData;
  */
 public class CsvParser implements ParserInterface {
 
-    PrintWriter writer;
-    BufferedReader br = null;
-    FileReader fr = null;
-    final String SEPARATOR = ";";
-    final String FILE_SUFFIX = ".csv";
+	PrintWriter writer;
+	BufferedReader br = null;
+	FileReader fr = null;
+	final String SEPARATOR = ";";
+	final String FILE_SUFFIX = ".csv";
 
-    public void parseToFile(ArrayList<ReportData> data, String path) throws FileNotFoundException {
+	public void parseToFile(ArrayList<ReportData> data, String path) throws FileNotFoundException {
 
-        String line = "";
-        path += FILE_SUFFIX;
+		String line = "";
+		path += FILE_SUFFIX;
 
-        File f = new File(path);
+		File f = new File(path);
 
-        f.getParentFile().mkdirs();
-        try {
-            f.createNewFile();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+		f.getParentFile().mkdirs();
+		try {
+			f.createNewFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
-        try {
-            writer = new PrintWriter(f);
-            for (ReportData singleData : data) {
-                line += singleData.getParameterName();
-                line += SEPARATOR;
-            }
-            writer.println(line);
+		try {
+			writer = new PrintWriter(f);
+			for (ReportData singleData : data) {
+				line += singleData.getParameterName();
+				line += SEPARATOR;
+			}
+			writer.println(line);
 
-            line = "";
-            for (int i = 0; i < data.get(0).getValue().size(); i++) {
-                for (ReportData singleData : data) {
-                    line += singleData.getValue().get(i);
-                    line += SEPARATOR;
+			line = "";
+			for (int i = 0; i < data.get(0).getValue().size(); i++) {
+				for (ReportData singleData : data) {
+					line += singleData.getValue().get(i);
+					line += SEPARATOR;
 
-                }
-               // System.out.println(line);
-                writer.println(line);
-                line = "";
+				}
+				writer.println(line);
+				line = "";
 
-            }
-        } finally {
-            writer.close();
-        }
+			}
+		} finally {
+			writer.close();
+		}
 
-    }
+	}
 
-    public ArrayList<ReportData> parseFileToReportData(String path) {
-        ArrayList<ReportData> data = new ArrayList<ReportData>();
-        ArrayList<String[]> lineValues = new ArrayList<String[]>();
-        ArrayList<String> values = new ArrayList<String>();
-        String[] parameterNames = new String[300];
-        path += FILE_SUFFIX;
+	public ArrayList<ReportData> parseFileToReportData(String path) {
+		ArrayList<ReportData> data = new ArrayList<ReportData>();
+		ArrayList<String[]> lineValues = new ArrayList<String[]>();
+		ArrayList<String> values = new ArrayList<String>();
+		String[] parameterNames = new String[300];
+		path += FILE_SUFFIX;
 
-        File f = new File(path);
+		File f = new File(path);
 
-        try {
-            String line = "";
-            br = new BufferedReader(new FileReader(f));
-            if ((line = br.readLine()) != null) {
-                parameterNames = line.split(SEPARATOR);
-                System.out.println(parameterNames);
+		try {
+			String line = "";
+			br = new BufferedReader(new FileReader(f));
+			if ((line = br.readLine()) != null) {
+				parameterNames = line.split(SEPARATOR);
 
-            }
-            while ((line = br.readLine()) != null) {
-                lineValues.add(line.split(SEPARATOR));
-//                System.out.println(line);
-            }
+			}
+			while ((line = br.readLine()) != null) {
+				lineValues.add(line.split(SEPARATOR));
+			}
 
+			// kol
+			for (int i = 0; i < parameterNames.length; i++) {
+				ReportData singleData = new ReportData();
+				singleData.setParameterName(parameterNames[i]);
+				// wiersze
+				for (int j = 0; j < lineValues.size(); j++) {
+					values.add(lineValues.get(j)[i]);
+				}
+				singleData.setValue(values);
+				values = new ArrayList<String>();
+				data.add(singleData);
 
+			}
 
-            //kol
-            for (int i = 0; i < parameterNames.length; i++) {
-                ReportData singleData = new ReportData();
-                singleData.setParameterName(parameterNames[i]);
-                //wiersze
-                for (int j = 0; j < lineValues.size(); j++) {
-                    values.add(lineValues.get(j)[i]);
-                }
-                singleData.setValue(values);
-                values = new ArrayList<String>();
-                data.add(singleData);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (br != null)
+					br.close();
+				if (fr != null)
+					fr.close();
+			} catch (IOException ex) {
+				ex.printStackTrace();
+			}
 
+		}
+		return data;
 
-            }
-
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (br != null)
-                    br.close();
-                if (fr != null)
-                    fr.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-
-        }
-        return data;
-
-    }
+	}
 }
